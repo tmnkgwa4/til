@@ -2,9 +2,8 @@
 
 インストール自体は楽だが、バージョンを管理したい場合に煩雑になるなぁと感じていたのでtfenvを導入した
 
-## install
+## 導入
 - brewでインストール可能
-
 ```$ brew install tfenv
 ```
 
@@ -22,6 +21,7 @@
 0.12.5
 -snip-
 ```
+
 - `install`でインストール
 ```$ tfenv uninstall 0.12.13
 [INFO] Installing Terraform v0.12.13
@@ -35,9 +35,12 @@ Archive:  tfenv_download.2Z0wVk/terraform_0.12.13_darwin_amd64.zip
   [INFO] Switching to v0.12.13
   [INFO] Switching completed
 ```
+
 - `uninstall`で削除
 ```$ tfenv uninstall 0.12.13
 [INFO] Uninstall Terraform v0.12.13
 [INFO] Terraform v0.12.13 is successfully uninstalled
 ```
+## Tips
+- 実行ログから解るようにOSに合ったバイナリをダウンロードし、`/usr/local/bin`に配置しているよう。
 
