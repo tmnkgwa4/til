@@ -1,6 +1,6 @@
 # git branch -D
 
-ブランチを消したい場合に。
+間違って作成したブランチを消したい場合に。
 
 ```
 ❯❯❯ git delete -D [branch name]
