@@ -13,5 +13,8 @@
 - ハマったところ
 - ドキュメント通りではないところ
 
+## 運用ルール
+- [ref](https://qiita.com/rik_cacaoholic/items/7971037f38370b2f1341)
+
 ## Reference
 - 参考にしたページ
