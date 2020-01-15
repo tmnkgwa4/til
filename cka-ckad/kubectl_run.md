@@ -75,6 +75,5 @@ pod "alpine" deleted
 No resources found.
 ```
 
-
 ## Reference
 - [kubectl run/create/expose のススメ](https://qiita.com/sourjp/items/f0c8c8b4a2a494a80908)
