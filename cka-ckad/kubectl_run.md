@@ -46,6 +46,34 @@ pod/nginx created
   }
 }
 ```
+## Pod を 一時的に立てておいてリソース完了後に削除する
+```
+😀 ❯❯❯ k run alpine --restart=Never --image=alpine --rm -it --command -- ls -la
+otal 64
+drwxr-xr-x    1 root     root          4096 Jan 15 04:18 .
+drwxr-xr-x    1 root     root          4096 Jan 15 04:18 ..
+drwxr-xr-x    2 root     root          4096 Dec 24 15:04 bin
+drwxr-xr-x    5 root     root           380 Jan 15 04:18 dev
+drwxr-xr-x    1 root     root          4096 Jan 15 04:18 etc
+drwxr-xr-x    2 root     root          4096 Dec 24 15:04 home
+drwxr-xr-x    5 root     root          4096 Dec 24 15:04 lib
+drwxr-xr-x    5 root     root          4096 Dec 24 15:04 media
+drwxr-xr-x    2 root     root          4096 Dec 24 15:04 mnt
+drwxr-xr-x    2 root     root          4096 Dec 24 15:04 opt
+dr-xr-xr-x  271 root     root             0 Jan 15 04:18 proc
+drwx------    2 root     root          4096 Dec 24 15:04 root
+drwxr-xr-x    1 root     root          4096 Jan 15 04:18 run
+drwxr-xr-x    2 root     root          4096 Dec 24 15:04 sbin
+drwxr-xr-x    2 root     root          4096 Dec 24 15:04 srv
+dr-xr-xr-x   13 root     root             0 Jan 15 04:18 sys
+drwxrwxrwt    2 root     root          4096 Dec 24 15:04 tmp
+drwxr-xr-x    7 root     root          4096 Dec 24 15:04 usr
+drwxr-xr-x   12 root     root          4096 Dec 24 15:04 var
+pod "alpine" deleted
+
+😀 ❯❯❯ k get pod
+No resources found.
+```
 
 
 ## Reference
