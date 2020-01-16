@@ -1,8 +1,6 @@
 # namespaceを用いたServiceDiscoveryを検証する
-
-[service name].[namespace name].svc.cluster.local が利用できる
-ちなみに同一 namespace であれば
-[service name] が利用できる
+- `[service name].[namespace name].svc.cluster.local` が利用できる
+- ちなみに同一 namespace であれば`[service name]` が利用できる
 
 ## 動作確認
 下記で環境を用意
