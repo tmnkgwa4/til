@@ -144,6 +144,5 @@ test_db=# select * from test_table;
 test_db=#
 ```
 
-
 ## Reference
 - [Flyway + PostgreSQLのDBマイグレーション環境をDockerを使って構築する](https://qiita.com/supimen89/items/1008e633f6ac2028e1e9)
