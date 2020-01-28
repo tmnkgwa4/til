@@ -2,6 +2,7 @@ FROM ruby:2.5-alpine
 LABEL maintainer="Tomoaki Nakagawa <tmnkgwa4@gmail.com>"
 
 RUN apk add --no-cache nodejs mysql-dev build-base libxml2-dev libxslt-dev
+RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock

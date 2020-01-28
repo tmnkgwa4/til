@@ -124,7 +124,40 @@ services:
 ```
 
 #### building environment
+- Building the project
+  - まず最初にプロジェクトを作成するi
+  - `--build-skip` でイメージのビルドを飛ばす
+```
+😀 ❯❯❯ docker-compose run web rails new . --force --database=mysql --skip-bundle -G
 
+Creating network "develop-environment_default" with the default driver
+
+[snip]
+
+```
+
+- すると、rails project が作成されるので `config/database.yaml` を編集する
+```
+default: &default
+  adapter: mysql2
+  encoding: unicode
+  username: root
+  password: password
+  host: db
+  pool: 5
+
+development:
+  <<: *default
+  database: dev_db
+
+test:
+  <<: *default
+  database: test_db
+
+production:
+  <<: *default
+  database: prd_db
+```
 
 
 
@@ -132,8 +165,10 @@ services:
 ## Trouble Shoot
 - Alpine Ruby Image に nokogiri を bundle install 使用とするとエラーでコケる
   - [ref](https://copo.jp/blog/2016/03/alpine-の-ruby-のイメージに-nokogiri-をインストール/)
+  - 原因は必須パッケージが足らないから
+    - build-base, libxml2-dev, libxslt-dev を追加することでbundle install が通る
 ```
-😀 ❯❯❯ docker build -t test .                                                                       20-01-28 15:03:16
+😀 ❯❯❯ docker build -t test .
 Sending build context to Docker daemon  4.608kB
 Step 1/12 : FROM ruby:2.5-alpine
  ---> cbd297d70a23
@@ -254,5 +289,20 @@ In Gemfile:
           rails-dom-testing was resolved to 2.0.3, which depends on
             nokogiri
 The command '/bin/sh -c bundle install' returned a non-zero code: 5
+```
 
+- Alpine イメージを使ったときに `standard_init_linux.go:211: exec user process caused "no such file or directory"` エラーが出て Build がコケる
+  - `entrypoint.sh` が原因
+  - QuickStart は Ubuntu Image なので bash だが、容量を小さくしたいため、alpine を採用したらだめだった
+    - alpine は `sh`
+  - 修正する前がこちら
+```
+#!/bin/bash
+set -e
+
+# Remove a potentially pre-existing server.pid for Rails.
+rm -f /myapp/tmp/pids/server.pid
+
+# Then exec the container's main process (what's set as CMD in the Dockerfile).
+exec "$@"
 ```
