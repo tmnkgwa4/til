@@ -1,4 +1,4 @@
-# Rails Tutorial Chapter 1
+# Rails Tutorial Chapter 1-1
 - Rails チュートリアル の備忘録
 
 ## Environment
@@ -125,8 +125,10 @@ services:
 
 #### building environment
 - Building the project
-  - まず最初にプロジェクトを作成するi
+  - まず最初にプロジェクトを作成する
+    - やっていることは Dockerfile の内容を Build して rails new でプロジェクトを current directory に作成している
   - `--build-skip` でイメージのビルドを飛ばす
+  - `-G` オプションで git init を skip している
 ```
 😀 ❯❯❯ docker-compose run web rails new . --force --database=mysql --skip-bundle -G
 
@@ -157,6 +159,25 @@ test:
 production:
   <<: *default
   database: prd_db
+```
+
+- 改めて イメージ を ビルドする
+```
+😀 ❯❯❯ docker-compose build
+
+[snip]
+
+Successfully tagged develop-environment_web:latest
+
+😀 ❯❯❯
+```
+- DB と Web を Up する
+```
+😀 ❯❯❯ docker-compose up -d
+
+[snip]
+
+😀 ❯❯❯
 ```
 
 
