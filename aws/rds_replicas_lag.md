@@ -1,7 +1,8 @@
 # [WIP] RDS replica lag とは？
 
 ## Overview
-- Network に関わっていた時間が長かったため、LAG = Link AGgregation しか浮かんでこなくて恥を書いたため調査
+- Network に関わっていた時間が長かったため、LAG = **L**ink **AG**gregation しか浮かんでこなくて恥を書いたため調査
+  - Time Lag のことだ!
 
 ### そもそも replica とは？
 - データの複製のこと
