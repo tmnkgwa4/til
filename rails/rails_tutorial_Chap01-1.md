@@ -142,7 +142,6 @@ Creating network "develop-environment_default" with the default driver
 ```
 default: &default
   adapter: mysql2
-  encoding: unicode
   username: root
   password: password
   host: db
@@ -180,10 +179,32 @@ Successfully tagged develop-environment_web:latest
 😀 ❯❯❯
 ```
 
-
-
-
 ## Trouble Shoot
+- docker-compose run -d で立ち上げてもコンテナが立ち上がらない
+  - こんなログ
+  - Gemfile の `tzinfo-data` platform を削除すればよい
+    - `gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]`
+    - `gem 'tzinfo-data'
+```
+😀 ❯❯❯ docker logs develop-environment_web_1                             20-01-29 15:53:55
+/usr/local/lib/ruby/site_ruby/2.5.0/bundler/spec_set.rb:43:in `block in for': Unable to find a spec satisfying tzinfo-data (>= 0) in the set. Perhaps the lockfile is corrupted? (Bundler::GemNotFound)
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/spec_set.rb:25:in `loop'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/spec_set.rb:25:in `for'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/spec_set.rb:83:in `materialize'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/definition.rb:170:in `specs'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/definition.rb:237:in `specs_for'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/definition.rb:226:in `requested_specs'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/runtime.rb:108:in `block in definition_method'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/runtime.rb:20:in `setup'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler.rb:107:in `setup'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/bundler/setup.rb:20:in `<top (required)>'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+        from /usr/local/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+        from /myapp/config/boot.rb:3:in `<top (required)>'
+        from bin/rails:3:in `require_relative'
+        from bin/rails:3:in `<main>'
+```
+
 - Alpine Ruby Image に nokogiri を bundle install 使用とするとエラーでコケる
   - [ref](https://copo.jp/blog/2016/03/alpine-の-ruby-のイメージに-nokogiri-をインストール/)
   - 原因は必須パッケージが足らないから
