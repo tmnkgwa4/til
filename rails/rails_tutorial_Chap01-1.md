@@ -178,6 +178,15 @@ Successfully tagged develop-environment_web:latest
 
 😀 ❯❯❯
 ```
+- `localhost:3000` にアクセスして確認する
+  - この状態だと mysql に database が存在しないので、rails から db:create を流す
+```
+😀 ❯❯❯ docker-compose run web rake db:create
+Starting develop-environment_db_1 ... done
+Created database 'dev_db'
+Created database 'test_db'
+```
+- 改めて `localhost:3000` にアクセスして `Yay! You're on Rails!` が表示されれば OK
 
 ## Trouble Shoot
 - docker-compose run -d で立ち上げてもコンテナが立ち上がらない
